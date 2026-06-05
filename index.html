@@ -420,7 +420,7 @@
 <nav>
   <div class="nav-logo">PimPollo</div>
   <ul class="nav-links">
-    <li><a href="javascript:void(0)" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Menú</a></li>
+    <li><a href="menu.html">Menú</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">Info</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reseñas</a></li>
@@ -444,94 +444,10 @@
   </div>
 
   <div class="hero-ctas">
-    <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" class="btn btn-primary">Ver Menú</button>
+    <a href="menu.html" class="btn btn-primary">Ver Menú</a>
     <button onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Reservar mesa</button>
     <button onclick="document.getElementById('delivery').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Pedir a domicilio</button>
     <button onclick="document.getElementById('location').scrollIntoView({behavior:'smooth'})" class="btn btn-outline">¿Cómo llegar?</button>
-  </div>
-</section>
-
-<!-- MENU -->
-<section id="menu">
-  <div class="container">
-    <h2 class="section-title">Nuestro <span>Menú</span></h2>
-    <p class="section-sub">Todo asado con carbón, todo hecho con amor</p>
-
-    <div class="menu-cats">
-      <button class="cat-btn active" onclick="filterMenu('all', this)">Todo</button>
-      <button class="cat-btn" onclick="filterMenu('pollo', this)">Pollo</button>
-      <button class="cat-btn" onclick="filterMenu('combo', this)">Combos</button>
-      <button class="cat-btn" onclick="filterMenu('complemento', this)">Complementos</button>
-    </div>
-
-    <div class="menu-grid">
-
-      <!-- POLLO -->
-      <div class="menu-card visible" data-cat="pollo">
-        <div class="item-tag">⭐ Favorito</div>
-        <div class="item-name">Pimpollo Completo</div>
-        <div class="item-desc">8 piezas de pollo, 1 salchicha asada, salsa molcajete y guisada, 2 totopos, 2 tortillas, cebolla guisada y curtida, jalapeño.</div>
-        <div class="item-price">$229</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="pollo">
-        <div class="item-name">½ Pimpollo</div>
-        <div class="item-desc">4 piezas de pollo, 1 salchicha, salsa molcajete y guisada, 1 totopos, 1 tortillas.</div>
-        <div class="item-price">$119</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="pollo">
-        <div class="item-name">Medio ½ Pimpollo + Comp Individual</div>
-        <div class="item-desc">1 medio (½) pimpollo + 1 complemento individual a elegir. Incluye salsas, tortillas y totopos.</div>
-        <div class="item-price">$135</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="pollo">
-        <div class="item-tag">Completo</div>
-        <div class="item-name">Pimpollo Entero + Complemento Individual</div>
-        <div class="item-desc">1 pimpollo entero + 1 complemento individual a elegir. Incluye salsas, tortillas y totopos.</div>
-        <div class="item-price">$259</div>
-      </div>
-
-      <!-- COMBOS -->
-      <div class="menu-card visible" data-cat="combo">
-        <div class="item-tag">Familia</div>
-        <div class="item-name">Combo Familia</div>
-        <div class="item-desc">1½ pimpollo (12 piezas), 4 salchichas, 6 salsas, 3 totopos, 4 paquetes de tortilla, 3 complementos (frijol, arroz, coditos) + refresco 2 L.</div>
-        <div class="item-price">$510</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="combo">
-        <div class="item-tag">Popular</div>
-        <div class="item-name">Combo Pareja</div>
-        <div class="item-desc">½ pimpollo para dos personas con complementos, salsas, tortillas y refresco personal.</div>
-        <div class="item-price">Consultar</div>
-      </div>
-
-      <!-- COMPLEMENTOS -->
-      <div class="menu-card visible" data-cat="complemento">
-        <div class="item-name">Arroz</div>
-        <div class="item-desc">Arroz estilo ranchero, acompañamiento ideal para tu pollo.</div>
-        <div class="item-price">Individual</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="complemento">
-        <div class="item-name">Frijoles</div>
-        <div class="item-desc">Frijoles de la olla, caseros y cremosos.</div>
-        <div class="item-price">Individual</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="complemento">
-        <div class="item-name">Coditos</div>
-        <div class="item-desc">Pasta tipo macarrón al estilo tradicional regiomontano.</div>
-        <div class="item-price">Individual</div>
-      </div>
-
-    </div>
-
-    <p style="color:rgba(255,255,255,0.4); font-size:0.82rem; margin-top:28px;">
-      * Precios sujetos a cambio. Consulta el menú completo en Rappi o Uber Eats.
-    </p>
   </div>
 </section>
 
