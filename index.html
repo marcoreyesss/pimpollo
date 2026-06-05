@@ -307,6 +307,95 @@
   }
   .map-wrapper iframe { width: 100%; height: 380px; border: none; display: block; }
 
+  /* ── RESERVAR ── */
+  #reservar { background: var(--dark); color: var(--cream); position: relative; overflow: hidden; }
+  #reservar::before {
+    content:''; position:absolute; top:-120px; right:-140px;
+    width:460px; height:460px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,107,53,0.28), transparent 70%);
+    filter:blur(70px); pointer-events:none;
+  }
+  #reservar::after {
+    content:''; position:absolute; bottom:-160px; left:-120px;
+    width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle, rgba(245,166,35,0.18), transparent 70%);
+    filter:blur(70px); pointer-events:none;
+  }
+  #reservar .section-title { color: var(--cream); }
+  #reservar .section-title span { color: var(--gold); }
+  #reservar .section-sub { color: rgba(255,255,255,0.55); }
+
+  .reserva-layout {
+    display:grid; grid-template-columns: 1.05fr 0.95fr; gap:28px;
+    margin-top:36px; position:relative; z-index:2; align-items:start;
+  }
+  @media(max-width:860px){ .reserva-layout { grid-template-columns:1fr; } }
+
+  .reserva-card {
+    background: rgba(255,255,255,0.045);
+    border:1px solid rgba(245,166,35,0.28);
+    border-radius:22px; padding:30px;
+    backdrop-filter: blur(6px);
+  }
+  .reserva-card h3 {
+    font-family:'Bebas Neue',sans-serif; letter-spacing:2px;
+    font-size:1.7rem; color:var(--gold); margin-bottom:20px;
+  }
+
+  .field { margin-bottom:18px; }
+  .field label {
+    display:block; font-weight:700; font-size:0.78rem;
+    text-transform:uppercase; letter-spacing:1px;
+    margin-bottom:8px; color:rgba(255,255,255,0.7);
+  }
+  .field input {
+    width:100%; padding:13px 16px; border-radius:12px;
+    border:1px solid rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.06); color:var(--cream);
+    font-family:'Nunito',sans-serif; font-size:1rem;
+    transition:border-color .2s, background .2s;
+  }
+  .field input:focus { outline:none; border-color:var(--gold); background:rgba(255,255,255,0.1); }
+  .field input::placeholder { color:rgba(255,255,255,0.35); }
+  .field input[type="date"]::-webkit-calendar-picker-indicator { filter:invert(0.8); cursor:pointer; }
+
+  .slots-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(82px,1fr)); gap:10px; }
+  .slot-btn {
+    padding:11px 6px; border-radius:12px;
+    border:1px solid rgba(245,166,35,0.4);
+    background:rgba(255,255,255,0.05); color:var(--cream);
+    font-family:'Nunito',sans-serif; font-weight:800; font-size:0.95rem;
+    cursor:pointer; transition:all .18s;
+  }
+  .slot-btn:hover:not(:disabled){ border-color:var(--gold); background:rgba(245,166,35,0.18); transform:translateY(-2px); }
+  .slot-btn.selected {
+    background:linear-gradient(135deg,var(--ember),var(--fire));
+    border-color:transparent; color:#fff; box-shadow:0 6px 18px rgba(232,50,10,0.4);
+  }
+  .slot-btn:disabled { opacity:0.3; cursor:not-allowed; text-decoration:line-through; }
+  .slots-hint { color:rgba(255,255,255,0.4); font-size:0.85rem; }
+
+  .reserva-msg { margin-top:14px; font-size:0.9rem; font-weight:700; min-height:1.1em; }
+  .reserva-msg.ok { color:#7CFC9A; }
+  .reserva-msg.err { color:#FF8A6B; }
+
+  .lista-reservas { display:flex; flex-direction:column; gap:14px; }
+  .reserva-item {
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+    border-left:4px solid var(--gold); border-radius:14px; padding:14px 16px;
+  }
+  .reserva-item .ri-name { font-weight:800; color:var(--cream); font-size:1.02rem; }
+  .reserva-item .ri-meta { color:rgba(255,255,255,0.6); font-size:0.82rem; margin-top:3px; }
+  .reserva-item .ri-when { color:var(--gold); font-weight:700; }
+  .cancel-btn {
+    background:transparent; border:1px solid rgba(255,138,107,0.6); color:#FF8A6B;
+    border-radius:10px; padding:8px 13px; font-weight:800; font-size:0.78rem;
+    cursor:pointer; white-space:nowrap; transition:all .18s;
+  }
+  .cancel-btn:hover { background:#FF8A6B; color:var(--dark); }
+  .empty-reservas { color:rgba(255,255,255,0.4); font-size:0.9rem; text-align:center; padding:30px 0; }
+
   /* ── FOOTER ── */
   footer {
     background: var(--dark);
@@ -332,6 +421,7 @@
   <div class="nav-logo">PimPollo</div>
   <ul class="nav-links">
     <li><a href="javascript:void(0)" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Menú</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">Info</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reseñas</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('delivery').scrollIntoView({behavior:'smooth'})">Pedir</a></li>
@@ -355,6 +445,7 @@
 
   <div class="hero-ctas">
     <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" class="btn btn-primary">Ver Menú</button>
+    <button onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Reservar mesa</button>
     <button onclick="document.getElementById('delivery').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Pedir a domicilio</button>
     <button onclick="document.getElementById('location').scrollIntoView({behavior:'smooth'})" class="btn btn-outline">¿Cómo llegar?</button>
   </div>
@@ -441,6 +532,54 @@
     <p style="color:rgba(255,255,255,0.4); font-size:0.82rem; margin-top:28px;">
       * Precios sujetos a cambio. Consulta el menú completo en Rappi o Uber Eats.
     </p>
+  </div>
+</section>
+
+<!-- RESERVAR -->
+<section id="reservar">
+  <div class="container">
+    <h2 class="section-title">Reserva tu <span>mesa</span></h2>
+    <p class="section-sub">Aparta tu lugar · Abierto todos los días 11:00 AM – 4:00 PM</p>
+
+    <div class="reserva-layout">
+
+      <!-- FORMULARIO -->
+      <div class="reserva-card">
+        <h3>Nueva reservación</h3>
+        <form id="reservaForm" onsubmit="return guardarReserva(event)" autocomplete="off">
+          <div class="field">
+            <label for="rNombre">Nombre</label>
+            <input id="rNombre" type="text" placeholder="Tu nombre completo" maxlength="50" required>
+          </div>
+          <div class="field">
+            <label for="rTel">Teléfono</label>
+            <input id="rTel" type="tel" inputmode="numeric" placeholder="10 dígitos" maxlength="15" required>
+          </div>
+          <div class="field">
+            <label for="rPersonas">Número de personas</label>
+            <input id="rPersonas" type="number" min="1" max="20" placeholder="¿Cuántos vienen?" required>
+          </div>
+          <div class="field">
+            <label for="rFecha">Fecha</label>
+            <input id="rFecha" type="date" required onchange="renderSlots()">
+          </div>
+          <div class="field">
+            <label>Horario disponible</label>
+            <div class="slots-grid" id="slotsGrid"></div>
+          </div>
+          <input type="hidden" id="rHora">
+          <button type="submit" class="btn btn-primary" style="width:100%;">Confirmar reservación</button>
+          <p class="reserva-msg" id="reservaMsg"></p>
+        </form>
+      </div>
+
+      <!-- LISTA DE RESERVACIONES -->
+      <div class="reserva-card">
+        <h3>Reservaciones registradas</h3>
+        <div class="lista-reservas" id="listaReservas"></div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -613,6 +752,195 @@ function filterMenu(cat, btn) {
     }
   });
 }
+
+/* ───────────────────────────────
+   SISTEMA DE RESERVACIONES
+   Persistencia local (localStorage)
+─────────────────────────────── */
+const HORARIO   = { open: 11, close: 16 };   // 11:00 AM – 4:00 PM
+const SLOT_MIN  = 30;                          // bloques de 30 minutos
+const STORAGE_KEY = 'pimpollo_reservas_v1';
+
+function getReservas() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch (e) { return []; }
+}
+function setReservas(r) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(r));
+}
+
+// Fecha local en formato YYYY-MM-DD (evita desfase por zona horaria)
+function localISO(date) {
+  const d = new Date(date);
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().split('T')[0];
+}
+
+// Genera los horarios disponibles (último 30 min antes del cierre)
+function generarSlots() {
+  const slots = [];
+  for (let h = HORARIO.open; h < HORARIO.close; h++) {
+    for (let m = 0; m < 60; m += SLOT_MIN) {
+      slots.push(String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0'));
+    }
+  }
+  return slots;
+}
+
+function reservasDe(fecha) {
+  return getReservas().filter(r => r.fecha === fecha);
+}
+
+function setMinDate() {
+  const f = document.getElementById('rFecha');
+  const hoy = localISO(new Date());
+  f.min = hoy;
+  if (!f.value) f.value = hoy;
+}
+
+function renderSlots() {
+  const grid = document.getElementById('slotsGrid');
+  const fecha = document.getElementById('rFecha').value;
+  document.getElementById('rHora').value = '';
+  grid.innerHTML = '';
+
+  if (!fecha) {
+    grid.innerHTML = '<p class="slots-hint">Elige una fecha primero.</p>';
+    return;
+  }
+
+  const ocupadas = reservasDe(fecha).map(r => r.hora);
+  const ahora = new Date();
+  const esHoy = fecha === localISO(ahora);
+  let disponibles = 0;
+
+  generarSlots().forEach(hora => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'slot-btn';
+    btn.textContent = hora;
+
+    let pasada = false;
+    if (esHoy) {
+      const [hh, mm] = hora.split(':').map(Number);
+      const t = new Date(ahora);
+      t.setHours(hh, mm, 0, 0);
+      if (t <= ahora) pasada = true;
+    }
+
+    if (ocupadas.includes(hora) || pasada) {
+      btn.disabled = true;
+      btn.title = ocupadas.includes(hora) ? 'Horario ocupado' : 'Horario no disponible';
+    } else {
+      disponibles++;
+      btn.onclick = () => seleccionarSlot(hora, btn);
+    }
+    grid.appendChild(btn);
+  });
+
+  if (disponibles === 0) {
+    grid.innerHTML = '<p class="slots-hint">No hay horarios disponibles para esta fecha. Prueba con otro día.</p>';
+  }
+}
+
+function seleccionarSlot(hora, btn) {
+  document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('rHora').value = hora;
+  mostrarMsg('', '');
+}
+
+function mostrarMsg(texto, tipo) {
+  const el = document.getElementById('reservaMsg');
+  el.textContent = texto;
+  el.className = 'reserva-msg ' + (tipo || '');
+}
+
+function formatFecha(iso) {
+  const [y, m, d] = iso.split('-');
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return parseInt(d, 10) + ' ' + meses[parseInt(m, 10) - 1] + ' ' + y;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+function guardarReserva(e) {
+  e.preventDefault();
+  const nombre   = document.getElementById('rNombre').value.trim();
+  const tel      = document.getElementById('rTel').value.trim();
+  const personas = parseInt(document.getElementById('rPersonas').value, 10);
+  const fecha    = document.getElementById('rFecha').value;
+  const hora     = document.getElementById('rHora').value;
+
+  if (!nombre || !tel || !personas || !fecha) {
+    mostrarMsg('Completa todos los campos.', 'err'); return false;
+  }
+  if (!/^\d{10}$/.test(tel.replace(/\D/g, ''))) {
+    mostrarMsg('Ingresa un teléfono válido de 10 dígitos.', 'err'); return false;
+  }
+  if (personas < 1 || personas > 20) {
+    mostrarMsg('El número de personas debe ser entre 1 y 20.', 'err'); return false;
+  }
+  if (!hora) {
+    mostrarMsg('Selecciona un horario disponible.', 'err'); return false;
+  }
+  // Verificación final de disponibilidad
+  if (reservasDe(fecha).some(r => r.hora === hora)) {
+    mostrarMsg('Ese horario acaba de ser reservado. Elige otro.', 'err');
+    renderSlots(); return false;
+  }
+
+  const reservas = getReservas();
+  reservas.push({
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    nombre, tel, personas, fecha, hora
+  });
+  setReservas(reservas);
+
+  mostrarMsg('¡Reservación confirmada para el ' + formatFecha(fecha) + ' a las ' + hora + '!', 'ok');
+  document.getElementById('reservaForm').reset();
+  setMinDate();
+  renderSlots();
+  renderLista();
+  return false;
+}
+
+function cancelarReserva(id) {
+  if (!confirm('¿Cancelar esta reservación?')) return;
+  setReservas(getReservas().filter(r => r.id !== id));
+  renderLista();
+  renderSlots();
+}
+
+function renderLista() {
+  const cont = document.getElementById('listaReservas');
+  const reservas = getReservas().sort((a, b) =>
+    (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
+
+  if (reservas.length === 0) {
+    cont.innerHTML = '<p class="empty-reservas">Aún no hay reservaciones. ¡Sé el primero!</p>';
+    return;
+  }
+
+  cont.innerHTML = reservas.map(r => `
+    <div class="reserva-item">
+      <div class="ri-info">
+        <div class="ri-name">${escapeHtml(r.nombre)}</div>
+        <div class="ri-meta">📞 ${escapeHtml(r.tel)} · 👥 ${r.personas} ${r.personas == 1 ? 'persona' : 'personas'}</div>
+        <div class="ri-meta ri-when">📅 ${formatFecha(r.fecha)} · 🕐 ${r.hora}</div>
+      </div>
+      <button class="cancel-btn" onclick="cancelarReserva('${r.id}')">Cancelar</button>
+    </div>`).join('');
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  setMinDate();
+  renderSlots();
+  renderLista();
+});
 </script>
 
 </body>
