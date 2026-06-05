@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reservar mesa · PimPollo — Cumbres, Monterrey</title>
+<link rel="stylesheet" href="pimpollo-a.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar__track">
+    <span>★ Pollo asado al carbón ★ Combos familiares ★ Reserva tu mesa ★ Cumbres 5º Sector ★ Pedidos por DiDi y Uber Eats ★&nbsp;</span>
+    <span>★ Pollo asado al carbón ★ Combos familiares ★ Reserva tu mesa ★ Cumbres 5º Sector ★ Pedidos por DiDi y Uber Eats ★&nbsp;</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="nav__brand" href="Propuesta A - Inicio.html">Pim<b>Pollo</b></a>
+    <nav class="nav__links">
+      <a href="Propuesta A - Inicio.html">Inicio</a>
+      <a href="Propuesta A - Menu.html">Menú</a>
+      <a href="Propuesta A - Reservar.html" aria-current="page">Reservar</a>
+      <a href="Propuesta A - Contacto.html">Contacto</a>
+    </nav>
+    <a class="nav__cta js-pedir" href="#">Pide ya</a>
+  </div>
+</header>
+
+<section class="menu-hero">
+  <p class="eyebrow" style="color:var(--yellow);">Consumo en el lugar</p>
+  <h1>Reserva tu mesa</h1>
+  <p>Elige día y hora según nuestros horarios. Tu reservación queda registrada al instante y esa hora se aparta para ti.</p>
+</section>
+
+<main class="section">
+  <div class="wrap">
+    <div id="reserva-root"></div>
+    <p class="disclaimer" style="margin-top:36px;">Las reservaciones se guardan en este dispositivo. Para grupos grandes o eventos, escríbenos desde la página de contacto.</p>
+  </div>
+</main>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <h2>¿Mejor para llevar?<br />Pídelo a domicilio.</h2>
+    <div class="hero__actions" style="margin:0;">
+      <a class="btn btn--red" data-link="didi" target="_blank" rel="noopener">DiDi Food</a>
+      <a class="btn btn--ink" data-link="uber" target="_blank" rel="noopener">Uber Eats</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <div class="foot__brand">Pim<b>Pollo</b></div>
+        <p style="max-width:34ch;margin:12px 0 0;color:#cdb88f;">Pollo asado al carbón en Cumbres 5º Sector, Monterrey. Para llevar o consumo en el lugar.</p>
+      </div>
+      <div>
+        <h4>Navega</h4>
+        <a href="Propuesta A - Inicio.html">Inicio</a>
+        <a href="Propuesta A - Menu.html">Menú</a>
+        <a href="Propuesta A - Reservar.html">Reservar</a>
+        <a href="Propuesta A - Contacto.html">Contacto</a>
+      </div>
+      <div>
+        <h4>Ordenar</h4>
+        <a data-link="didi" target="_blank" rel="noopener">DiDi Food →</a>
+        <a data-link="uber" target="_blank" rel="noopener">Uber Eats →</a>
+        <h4 style="margin-top:18px;">Visítanos</h4>
+        <a data-link="maps" target="_blank" rel="noopener" id="foot-addr"></a>
+      </div>
+    </div>
+    <div class="foot__note">
+      <span>© <span id="yr"></span> PimPollo · Cumbres 5º Sector, Monterrey, N.L.</span>
+      <span>Hecho con antojo 🍗</span>
+    </div>
+  </div>
+</footer>
+
+<script src="pimpollo-data.js"></script>
+<script src="pimpollo-shared.js"></script>
+<script src="pimpollo-reservas.js"></script>
+</body>
+</html>
