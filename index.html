@@ -132,12 +132,54 @@
     animation: fadeUp 0.9s 0.35s ease both;
   }
   .badge {
-    background: rgba(255,255,255,0.5);
-    border: 1px solid rgba(0,0,0,0.12);
-    color: var(--dark); padding: 8px 18px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.7);
+    color: var(--dark); padding: 9px 18px;
     border-radius: 999px; font-size: 0.82rem; font-weight: 700;
     letter-spacing: 0.5px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
   }
+
+  /* hero status (rating + abierto) */
+  #hero img { animation: float 5s ease-in-out infinite; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .hero-status {
+    display: inline-flex; align-items: center; gap: 18px;
+    margin-top: 22px; padding: 10px 22px;
+    background: rgba(26,15,0,0.14);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 999px;
+    position: relative; z-index: 2;
+    animation: fadeUp 0.9s 0.6s ease both;
+  }
+  .hero-status .hs-item {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-weight: 800; font-size: 0.85rem; color: var(--brown);
+  }
+  .hero-status .hs-stars { color: var(--fire); letter-spacing: 1px; }
+  .hero-status .hs-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(0,0,0,0.25); }
+  .hero-status .hs-live {
+    width: 9px; height: 9px; border-radius: 50%; background: #16a34a;
+    box-shadow: 0 0 0 0 rgba(22,163,74,0.6);
+    animation: livePulse 1.8s infinite;
+  }
+  @keyframes livePulse {
+    0% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); }
+    70% { box-shadow: 0 0 0 9px rgba(22,163,74,0); }
+    100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+  }
+
+  /* scroll cue */
+  .scroll-cue {
+    position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+    z-index: 2; color: var(--brown); font-size: 1.5rem;
+    animation: bob 1.8s ease-in-out infinite; opacity: 0.6;
+  }
+  @keyframes bob { 0%,100%{ transform: translateX(-50%) translateY(0);} 50%{ transform: translateX(-50%) translateY(8px);} }
 
   .hero-ctas {
     display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
@@ -165,6 +207,16 @@
 
   /* ── SECTION COMMON ── */
   section { padding: 90px 24px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 0.74rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--fire);
+    margin-bottom: 14px;
+  }
+  .eyebrow::before {
+    content: ''; width: 30px; height: 2px;
+    background: linear-gradient(90deg, var(--fire), var(--gold));
+  }
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -177,6 +229,10 @@
     letter-spacing: 2px; text-transform: uppercase; margin-bottom: 48px;
   }
   .container { max-width: 1100px; margin: 0 auto; }
+
+  /* reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
 
   /* ── MENU ── */
   #menu { background: var(--dark); }
@@ -238,14 +294,31 @@
     gap: 24px;
   }
   .info-card {
-    background: #fff; border-radius: 16px; padding: 28px 24px;
+    position: relative;
+    background: #fff; border-radius: 18px; padding: 30px 26px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    border: 1px solid rgba(232,50,10,0.06);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    overflow: hidden;
   }
+  .info-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--fire), var(--gold));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .info-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    border-color: rgba(232,50,10,0.15);
+  }
+  .info-card:hover::before { transform: scaleX(1); }
   .info-card .ic-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    background: var(--fire); display: flex; align-items: center;
-    justify-content: center; margin-bottom: 16px;
-    font-size: 1.3rem;
+    width: 50px; height: 50px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--ember), var(--fire));
+    display: flex; align-items: center;
+    justify-content: center; margin-bottom: 18px;
+    font-size: 1.4rem;
+    box-shadow: 0 6px 16px rgba(232,50,10,0.3);
   }
   .info-card h3 {
     font-weight: 800; font-size: 1rem; margin-bottom: 8px; color: var(--brown);
@@ -266,11 +339,29 @@
   }
   .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
   .review-card {
-    background: #fff; border-radius: 16px; padding: 28px;
+    position: relative;
+    background: #fff; border-radius: 18px; padding: 32px 28px 28px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .review-card::before {
+    content: '\201C';
+    position: absolute; top: 10px; right: 24px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem; line-height: 1; color: rgba(245,166,35,0.22);
+  }
+  .review-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(0,0,0,0.1); }
+  .review-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .review-avatar {
+    width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--gold), var(--ember));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: #fff;
+    letter-spacing: 1px;
   }
   .reviewer { font-weight: 800; font-size: 0.95rem; color: var(--brown); }
-  .reviewer-meta { font-size: 0.78rem; color: #9e7c5a; margin-bottom: 14px; }
+  .reviewer-meta { font-size: 0.78rem; color: #9e7c5a; }
   .review-text { font-size: 0.9rem; line-height: 1.65; color: #3a2510; }
   .review-scores { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
   .rscore {
@@ -420,7 +511,7 @@
 <nav>
   <div class="nav-logo">PimPollo</div>
   <ul class="nav-links">
-    <li><a href="javascript:void(0)" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Menú</a></li>
+    <li><a href="menu.html">Menú</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">Info</a></li>
     <li><a href="javascript:void(0)" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reseñas</a></li>
@@ -443,101 +534,26 @@
     <span class="badge">👨‍👩‍👧 Combos familiares</span>
   </div>
 
+  <div class="hero-status">
+    <span class="hs-item"><span class="hs-stars">★★★★★</span> 5.0</span>
+    <span class="hs-dot"></span>
+    <span class="hs-item"><span class="hs-live"></span> Abierto · 11 AM – 4 PM</span>
+  </div>
+
   <div class="hero-ctas">
-    <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" class="btn btn-primary">Ver Menú</button>
+    <a href="menu.html" class="btn btn-primary">Ver Menú</a>
     <button onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Reservar mesa</button>
     <button onclick="document.getElementById('delivery').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Pedir a domicilio</button>
     <button onclick="document.getElementById('location').scrollIntoView({behavior:'smooth'})" class="btn btn-outline">¿Cómo llegar?</button>
   </div>
-</section>
 
-<!-- MENU -->
-<section id="menu">
-  <div class="container">
-    <h2 class="section-title">Nuestro <span>Menú</span></h2>
-    <p class="section-sub">Todo asado con carbón, todo hecho con amor</p>
-
-    <div class="menu-cats">
-      <button class="cat-btn active" onclick="filterMenu('all', this)">Todo</button>
-      <button class="cat-btn" onclick="filterMenu('pollo', this)">Pollo</button>
-      <button class="cat-btn" onclick="filterMenu('combo', this)">Combos</button>
-      <button class="cat-btn" onclick="filterMenu('complemento', this)">Complementos</button>
-    </div>
-
-    <div class="menu-grid">
-
-      <!-- POLLO -->
-      <div class="menu-card visible" data-cat="pollo">
-        <div class="item-tag">⭐ Favorito</div>
-        <div class="item-name">Pimpollo Completo</div>
-        <div class="item-desc">8 piezas de pollo, 1 salchicha asada, salsa molcajete y guisada, 2 totopos, 2 tortillas, cebolla guisada y curtida, jalapeño.</div>
-        <div class="item-price">$229</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="pollo">
-        <div class="item-name">½ Pimpollo</div>
-        <div class="item-desc">4 piezas de pollo, 1 salchicha, salsa molcajete y guisada, 1 totopos, 1 tortillas.</div>
-        <div class="item-price">$119</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="pollo">
-        <div class="item-name">Medio ½ Pimpollo + Comp Individual</div>
-        <div class="item-desc">1 medio (½) pimpollo + 1 complemento individual a elegir. Incluye salsas, tortillas y totopos.</div>
-        <div class="item-price">$135</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="pollo">
-        <div class="item-tag">Completo</div>
-        <div class="item-name">Pimpollo Entero + Complemento Individual</div>
-        <div class="item-desc">1 pimpollo entero + 1 complemento individual a elegir. Incluye salsas, tortillas y totopos.</div>
-        <div class="item-price">$259</div>
-      </div>
-
-      <!-- COMBOS -->
-      <div class="menu-card visible" data-cat="combo">
-        <div class="item-tag">Familia</div>
-        <div class="item-name">Combo Familia</div>
-        <div class="item-desc">1½ pimpollo (12 piezas), 4 salchichas, 6 salsas, 3 totopos, 4 paquetes de tortilla, 3 complementos (frijol, arroz, coditos) + refresco 2 L.</div>
-        <div class="item-price">$510</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="combo">
-        <div class="item-tag">Popular</div>
-        <div class="item-name">Combo Pareja</div>
-        <div class="item-desc">½ pimpollo para dos personas con complementos, salsas, tortillas y refresco personal.</div>
-        <div class="item-price">Consultar</div>
-      </div>
-
-      <!-- COMPLEMENTOS -->
-      <div class="menu-card visible" data-cat="complemento">
-        <div class="item-name">Arroz</div>
-        <div class="item-desc">Arroz estilo ranchero, acompañamiento ideal para tu pollo.</div>
-        <div class="item-price">Individual</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="complemento">
-        <div class="item-name">Frijoles</div>
-        <div class="item-desc">Frijoles de la olla, caseros y cremosos.</div>
-        <div class="item-price">Individual</div>
-      </div>
-
-      <div class="menu-card visible" data-cat="complemento">
-        <div class="item-name">Coditos</div>
-        <div class="item-desc">Pasta tipo macarrón al estilo tradicional regiomontano.</div>
-        <div class="item-price">Individual</div>
-      </div>
-
-    </div>
-
-    <p style="color:rgba(255,255,255,0.4); font-size:0.82rem; margin-top:28px;">
-      * Precios sujetos a cambio. Consulta el menú completo en Rappi o Uber Eats.
-    </p>
-  </div>
+  <div class="scroll-cue">⌄</div>
 </section>
 
 <!-- RESERVAR -->
 <section id="reservar">
   <div class="container">
+    <span class="eyebrow">Reservaciones</span>
     <h2 class="section-title">Reserva tu <span>mesa</span></h2>
     <p class="section-sub">Aparta tu lugar · Abierto todos los días 11:00 AM – 4:00 PM</p>
 
@@ -586,6 +602,7 @@
 <!-- INFO -->
 <section id="info">
   <div class="container">
+    <span class="eyebrow">Conócenos</span>
     <h2 class="section-title">¿Qué <span>somos?</span></h2>
     <p class="section-sub">Todo lo que necesitas saber</p>
 
@@ -648,6 +665,7 @@
   <div class="container">
     <div style="display:flex; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:16px;">
       <div>
+        <span class="eyebrow">Reseñas</span>
         <h2 class="section-title" style="margin-bottom:0;">Lo que <span>dicen</span></h2>
         <p class="section-sub" style="margin-bottom:0;">Opiniones de nuestros clientes</p>
       </div>
@@ -661,9 +679,14 @@
     <div class="review-grid">
 
       <div class="review-card">
+        <div class="review-head">
+          <div class="review-avatar">FH</div>
+          <div>
+            <div class="reviewer">Fernando Huerta</div>
+            <div class="reviewer-meta">Local Guide · 38 reseñas · Hace 6 meses</div>
+          </div>
+        </div>
         <div class="stars" style="font-size:1rem;">★★★★★</div>
-        <div class="reviewer">Fernando Huerta</div>
-        <div class="reviewer-meta">Local Guide · 38 reseñas · 3 fotos · Hace 6 meses</div>
         <p class="review-text">Excelente lugar para comer pollo asado. La calidad de la comida y el servicio son de primera.</p>
         <div class="review-scores">
           <span class="rscore">Comida: 5/5</span>
@@ -672,9 +695,14 @@
       </div>
 
       <div class="review-card">
+        <div class="review-head">
+          <div class="review-avatar">CC</div>
+          <div>
+            <div class="reviewer">Carlos Canp</div>
+            <div class="reviewer-meta">Local Guide · 13 reseñas · Hace 2 años</div>
+          </div>
+        </div>
         <div class="stars" style="font-size:1rem;">★★★★★</div>
-        <div class="reviewer">Carlos Canp</div>
-        <div class="reviewer-meta">Local Guide · 13 reseñas · 10 fotos · Hace 2 años · Para llevar</div>
         <p class="review-text">Muy buena experiencia. El pollo está delicioso y el ambiente es muy agradable. Precio justo por la calidad que ofrecen.</p>
         <div class="review-scores">
           <span class="rscore">Comida: 5/5</span>
@@ -691,6 +719,7 @@
 <!-- DELIVERY -->
 <section id="delivery">
   <div class="container">
+    <span class="eyebrow" style="color:var(--gold);">Entrega a domicilio</span>
     <h2 class="section-title">Pide a <span>domicilio</span></h2>
     <p class="section-sub">Elige tu plataforma favorita</p>
 
@@ -715,6 +744,7 @@
 <!-- LOCATION -->
 <section id="location">
   <div class="container">
+    <span class="eyebrow">Ubicación</span>
     <h2 class="section-title">Encuén<span>tranos</span></h2>
     <p class="section-sub">Av. Paseo de los Leones 2908, Cumbres 5° Sector, Monterrey</p>
     <div class="map-wrapper">
@@ -940,7 +970,27 @@ document.addEventListener('DOMContentLoaded', function () {
   setMinDate();
   renderSlots();
   renderLista();
+  initReveal();
 });
+
+/* Aparición progresiva de tarjetas al hacer scroll */
+function initReveal() {
+  const targets = document.querySelectorAll('.info-card, .review-card, .delivery-card');
+  targets.forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i % 6) * 0.07 + 's';
+  });
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); obs.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12 });
+  targets.forEach(el => io.observe(el));
+}
 </script>
 
 </body>
