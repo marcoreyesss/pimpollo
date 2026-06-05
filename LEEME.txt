@@ -1,0 +1,31 @@
+PIMPOLLO — SITIO WEB
+=====================
+
+Cómo verlo
+----------
+Abre el archivo "index.html" (o "Propuesta A - Inicio.html").
+Lo ideal es subir TODA esta carpeta a un hosting para que cargue
+correctamente el logo y funcionen las reservaciones.
+
+Tu logo
+-------
+Coloca tu logo en esta misma carpeta con el nombre EXACTO:
+
+    logo.png
+
+Recomendado: PNG con fondo transparente, cuadrado (por ej. 600x600 px).
+Aparecerá automáticamente en el círculo del inicio y no se volverá a pedir.
+Mientras no exista ese archivo, se muestra el texto "PimPollo" como respaldo.
+
+Páginas
+-------
+- Propuesta A - Inicio.html     (inicio)
+- Propuesta A - Menu.html        (menú completo)
+- Propuesta A - Reservar.html    (reservación de mesa)
+- Propuesta A - Contacto.html    (ubicación, mapa, horarios, contacto)
+
+Notas
+-----
+- Los precios y horarios son de referencia: edítalos en "pimpollo-data.js".
+- "Pide ya" abre los enlaces de DiDi Food y Uber Eats.
+- Las reservaciones se guardan en el navegador del dispositivo.
